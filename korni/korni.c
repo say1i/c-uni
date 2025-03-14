@@ -60,7 +60,7 @@ int chord_method(double *x,double a,double b, double (*f)(double),double eps)
     if(fabs(fa)<eps){*x=a;return 1;}
     if(fabs(fb)<eps){*x=b;return 1;}
     sfa = sign(fa);sfb=sign(fb);
-    if(sfa*sfb==1)printf("метод не применим");return 0;
+    if(sfa*sfb==1){printf("метод не применим");return -1;}
 
     for(k=1;fabs(c[1]-c[0])>eps;k++)
     {
@@ -94,8 +94,7 @@ int nyuton_method(double *x,double (*f)(double),double (*df)(double),double eps,
 int main()
 {
     FILE *fout = fopen("output.txt","w");
-    double x,y;
-    double z;
+    double x,y,z;
     nf=0;
     fprintf(fout,"chord method:\n");
     int res9 = chord_method(&x,0,2,f9,1.e-15);
@@ -110,7 +109,7 @@ int main()
     fprintf(fout, "iteration: %d ", res10);
     fprintf(fout, "call: %d ", nf);
     fprintf(fout, "abs err: %lg ", y-0.5177573636824583);
-    fprintf(fout, "rel err: %lg \n", (y-0.5177573636824583)/0.5177573636824583);*/
+    fprintf(fout, "rel err: %lg \n", (y-0.5177573636824583)/0.5177573636824583);
     nf=0;
     int res13 = chord_method(&z,-1.0,10,f13,1.e-15);
     fprintf(fout, "13)x: %lg! ", z);
