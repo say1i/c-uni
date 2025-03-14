@@ -1,8 +1,10 @@
-chord method:
-9)x: 0.345955 iteration: 40 call: 0.345955 abs err: -4.996e-016 rel err: -1.44412e-015 
-10)x: 0.517757 iteration: 96 call: 0.517757 abs err: -2.10942e-015 rel err: -4.07415e-015 
-13)x: 0 iteration: 1 call: 9.88131e-324 abs err: 0 rel err: я не знаю
+13)x: 4.20557e-192! iteration: 0 call: 2 abs err: 4.20557e-192 rel err: я не знаю
 nyuton method:
-1)x: 2 iteration: 11 call: 2 abs err: 1.65405 rel err: 4.7811 
-5)x: 0.739085 iteration: 6 call: 0.739085 abs err: 0.221328 rel err: 0.427474 
-5)x: 1.7881e-307 iteration: 20 call: 1.7881e-307 abs err: 1.7881e-307 rel err: я не знаю
+1)x: 2 iteration: 11 call: 20 abs err: 0 rel err: 0 
+1)x: 2 iteration: 20 call: 38 abs err: 0 rel err: 0 
+3)x: 0.739085 iteration: 7 call: 12 abs err: 6.66134e-016 rel err: 9.01295e-016 
+3)x: 0.739085 iteration: 6 call: 10 abs err: 5.55112e-016 rel err: 7.51079e-016 
+5)x: 2.0746e-317 iteration: 20 call: 38 abs err: -3 rel err: -1 
+5)x: 2.0746e-317 iteration: 20 call: 38 abs err: -3 rel err: -1 
+5)x: 2.0746e-317 iteration: 20 call: 38 abs err: -3 rel err: -1 
+5)x: 2.0746e-317 iteration: 20 call: 38 abs err: -3 rel err: -1 
