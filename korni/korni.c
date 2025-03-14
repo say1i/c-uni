@@ -93,6 +93,7 @@ int nyuton_method(double *x,double (*f)(double),double (*df)(double),double eps,
 }
 int main()
 {
+    ///
     FILE *fout = fopen("output.txt","w");
     double x,y,z;
     nf=0;
