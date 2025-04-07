@@ -7,6 +7,7 @@ double kvadr_f(double a,double b,double(*f)(double))
 double f0(double x)
 {
 	return 1;
+
 }
 double pf0(double x)
 {
