@@ -1,0 +1,4 @@
+x: 1 cos(x): 0.540302 abs err: 1.11022e-016 rel err: 2.05482e-016 
+x: 2 cos(x): -0.416147 abs err: 5.55112e-017 rel err: 1.33393e-016 
+x: 3 cos(x): -0.989992 abs err: 1.11022e-016 rel err: 1.12145e-016 
+x: 4 cos(x): -0.653644 abs err: 1.30729 rel err: 2 
