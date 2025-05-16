@@ -20,7 +20,7 @@ double ppolynom(double x)
 {
     return 2*atan(5*x);
 }
-double f0(double x)
+{double f0(double x)
 {
 	return 1;
 
@@ -52,6 +52,7 @@ double f3(double x)
 double pf3(double x)
 {
 	return x*x*x*x/4;
+}
 }
 double f(double(*f)(double),double a,double b,double n)
 {
@@ -85,7 +86,7 @@ int main()
 	printf("sdrob: %lf | idrob: %lf | rdrob: %lf\n",sdrob,idrob,rdrob);
 	printf("ssin: %lf | isin: %lf | rsin: %lf\n",ssin,isin,rsin);
 	printf("spolynom: %lf | ipolynom: %lf | rpolynom: %lf\n",spolynom,ipolynom,rpolynom);
-	/*double s0 = f(f0,a,b,n);
+	{/*double s0 = f(f0,a,b,n);
 	double s1 = f(f1,a,b,n);
 	double s2 = f(f2,a,b,n);
 	double s3 = f(f3,a,b,n);
@@ -103,6 +104,6 @@ int main()
 	printf("s0: %lf | i0: %lf | r0: %lf\n",s0,i0,r0);
 	printf("s1: %lf | i1: %lf | r1: %lf\n",s1,i1,r1);
 	printf("s2: %lf | i2: %lf | r2: %lf\n",s2,i2,r2);
-	printf("s3: %lf | i3: %lf | r3: %lf\n",s3,i3,r3);*/
+	printf("s3: %lf | i3: %lf | r3: %lf\n",s3,i3,r3);*/}
 }
 
