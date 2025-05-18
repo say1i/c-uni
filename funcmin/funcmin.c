@@ -4,44 +4,40 @@ double func(double x)
 {
     return (x+1)*(x+1);
 }
-double funcmin(double(*f)(double),double a,double b)
+double funcmin(double(*f)(double), double a, double b)
 {
+    double x1 = (3*a + b) / 4.0;
+    double x2 = (a + b) / 2.0;
+    double x3 = (a + 3*b) / 4.0;
 
-    double x1=3*a/4+b/4;
-    double x2=(a+b)/2;
-    double x3=a/4+3*b/4;
     double ab = fabs(a - b);
-    while(ab>1e-15||ab>1e-15*fabs(a+b)/2)
+
+    while (ab>1e-15||ab>1e-15*fabs(a+b)/2)
     {
-        double mas[5]={a,x1,x2,x3,b};
-        double min = mas[0];
-        int condition = 0;
-        for(int i = 0;i < 5;i++)
+        double f1 = f(x1);
+        double f2 = f(x2);
+        double f3 = f(x3);
+
+        if (f1 < f2 && f1 < f3)
         {
-            if(f(mas[i])<f(min))
-            {
-                condition = i;
-            }
+            b = x2;
         }
-        if(condition==0||condition==1)
+        else if (f3 < f2 && f3 < f1)
         {
-            b=x2;
+            a = x2;
         }
-        if(condition==2)
+        else
         {
-            a=x1;
-            b=x3;
-        }
-        if(condition==3||condition==4)
-        {
-            a=x2;
+            a = x1;
+            b = x3;
         }
         x1=3*a/4.0+b/4.0;
         x2=(a+b)/2.0;
         x3=a/4.0+3.0*b/4.0;
-        ab=fabs(a-b);
+        ab = fabs(a - b);
     }
-    return (a+b)/2.0;
+
+    return (a + b) / 2.0;
 }
 int main()
 {
