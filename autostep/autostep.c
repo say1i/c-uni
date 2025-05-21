@@ -54,7 +54,7 @@ double autostep(double epsilon,double a, double b,double(*f)(double))
         i1= kvadr_f(a,a+h,f);
         i2 = kvadr_f(a,a+h/2.0,f)+kvadr_f(a+h/2.0,a+h,f);
         delta = (i2-i1)/sp;
-        if(delta<epsilon)
+        if(fabs(delta)<=epsilon)
         {
             if(delta<0)qarant+=-delta;
             else qarant+=delta;
@@ -62,17 +62,16 @@ double autostep(double epsilon,double a, double b,double(*f)(double))
             sum+=i2;
             a+=h;
             steps++;
-
         }
-        chi=pow(fabs(delta)/epsilon,1.0/5);//недопонял как это связано с новым шагом,без модуля выходит неопределенность не знаю почему
-
+        chi=pow(fabs(delta)/epsilon,1.0/5.0);//недопонял как это связано с новым шагом
         if(chi>10)chi=10;
         if(chi<0.1)chi=0.1;
-        h = h / chi * 0.95;
+        h = h * 0.95 / chi;
     }
     if(sredn<0)sredn*=-1;
     return sum;
 }
+
 
 int main()
 {
@@ -92,9 +91,9 @@ int main()
 	double rpolynom7 = fabs(spolynom7-ipolynom7);
 
 	printf("e=10^-7\n");
-	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %le | drob qarant: %le | drob sredn: %le\n",sdrob7,idrob7,rdrob7,steps,qarant,sredn);
-    printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %le | sin qarant: %le | sin sredn: %le\n",ssin7,isin7,rsin7,steps,qarant,sredn);
-	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %le | polynom qarant: %le | polynom sredn: %le\n",spolynom7,ipolynom7,rpolynom7,steps,qarant,sredn);
+	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %d | drob qarant: %le | drob sredn: %le\n",sdrob7,idrob7,rdrob7,steps,qarant,sredn);
+    printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %d | sin qarant: %le | sin sredn: %le\n",ssin7,isin7,rsin7,steps,qarant,sredn);
+	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %d | polynom qarant: %le | polynom sredn: %le\n",spolynom7,ipolynom7,rpolynom7,steps,qarant,sredn);
 	double ssin9 = autostep(1e-9,a,b,sin);
     double sdrob9 = autostep(1e-9,a,b,drob);
     double spolynom9 = autostep(1e-9,a,b,polynom);
@@ -108,9 +107,9 @@ int main()
 	double rpolynom9 = fabs(spolynom9-ipolynom9);
 
 	printf("e=10^-9\n");
-	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %le | drob qarant: %le | drob sredn: %le\n",sdrob9,idrob9,rdrob9,steps,qarant,sredn);
-    printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %le | sin qarant: %le | sin sredn: %le\n",ssin9,isin9,rsin9,steps,qarant,sredn);
-	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %le | polynom qarant: %le | polynom sredn: %le\n",spolynom9,ipolynom9,rpolynom9,steps,qarant,sredn);
+	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %d | drob qarant: %le | drob sredn: %le\n",sdrob9,idrob9,rdrob9,steps,qarant,sredn);
+    printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %d | sin qarant: %le | sin sredn: %le\n",ssin9,isin9,rsin9,steps,qarant,sredn);
+	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %d | polynom qarant: %le | polynom sredn: %le\n",spolynom9,ipolynom9,rpolynom9,steps,qarant,sredn);
 
 	double ssin11 = autostep(1e-11,a,b,sin);
     double sdrob11 = autostep(1e-11,a,b,drob);
@@ -125,7 +124,8 @@ int main()
 	double rpolynom11 = fabs(spolynom11-ipolynom11);
 
 	printf("e=10^-11\n");
-	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %le | drob qarant: %le | drob sredn: %le\n",sdrob11,idrob11,rdrob11,steps,qarant,sredn);
-    printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %le | sin qarant: %le | sin sredn: %le\n",ssin11,isin11,rsin11,steps,qarant,sredn);
-	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %le | polynom qarant: %le | polynom sredn: %le\n",spolynom11,ipolynom11,rpolynom11,steps,qarant,sredn);
+	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %d | drob qarant: %le | drob sredn: %le\n",sdrob11,idrob11,rdrob11,steps,qarant,sredn);
+    printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %d | sin qarant: %le | sin sredn: %le\n",ssin11,isin11,rsin11,steps,qarant,sredn);
+	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %d | polynom qarant: %le | polynom sredn: %le\n",spolynom11,ipolynom11,rpolynom11,steps,qarant,sredn);
 }
+
