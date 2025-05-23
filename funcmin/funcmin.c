@@ -42,7 +42,6 @@ double funcmin(double(*f)(double), double a, double b,double epsilon)
             a = x1;
             b = x3;
             x1 = (3*a + b) / 4.0;
-            x2 = (a + b) / 2.0;
             x3 = (a + 3*b) / 4.0;
             f1 = f(x1);
             f3 = f(x3);

@@ -17,29 +17,6 @@ int sign(double x)
     else if(x<0)return -1;
     return 0;
 }
-double chord_method(double a,double b, double (*f)(double),double eps)
-{
-    double x = 0.0;
-    double fa,fb,fc,c[2];
-    int i =0,sfa,sfb,sfc;
-    c[0]=a;c[1]=b;fa=f(a);fb=f(b);
-    if(fabs(fa)<eps){x=a;return x;}
-    if(fabs(fb)<eps){x=b;return x;}
-    sfa = sign(fa);sfb=sign(fb);
-    if(sfa*sfb==1){printf("метод не применим");return -1;}
-
-    for(int k=1;fabs(c[1]-c[0])>eps;k++)
-    {
-        i=!i;
-        c[i]=(a*fb-b*fa)/(fb-fa);
-        fc = f(c[i]);sfc = sign(fc);
-        if(fabs(fc)<eps){x=c[i];return k+1;}
-        if(sfa*sfc==1){a=c[i];fa=fc;}
-        else{b=c[i];fb=fc;}
-    }
-    x=c[i];
-    return x;
-}
 double autostep(double epsilon,double a, double b,double(*f)(double))
 {
     steps=0;
@@ -76,6 +53,30 @@ double autostep(double epsilon,double a, double b,double(*f)(double))
     return sum;
 }
 
+double chord_method(double a,double b, double (*f)(double),double eps,double alpha)
+{
+    double x = 0.0;
+    double fa,fb,fc,c[2];
+    int i =0,sfa,sfb,sfc;
+    c[0]=a;c[1]=b;fa=autostep(eps,0,a,f)-alpha;fb=autostep(eps,0,b,f)-alpha;
+    if(fabs(fa)<eps){x=a;return x;}
+    if(fabs(fb)<eps){x=b;return x;}
+    sfa = sign(fa);sfb=sign(fb);
+    if(sfa*sfb==1){printf("метод не применим");return -1;}
+
+    for(int k=1;fabs(c[1]-c[0])>eps;k++)
+    {
+        i=!i;
+        c[i]=(a*fb-b*fa)/(fb-fa);
+        fc = autostep(eps,0,c[i],f)-alpha;sfc = sign(fc);
+        if(fabs(fc)<eps){x=c[i];return k+1;}
+        if(sfa*sfc==1){a=c[i];fa=fc;}
+        else{b=c[i];fb=fc;}
+    }
+    x=c[i];
+    return x;
+}
+
 double itog(double epsilon,double alpha,double a,double b,double(*f)(double))
 {
     steps=0;
@@ -88,24 +89,27 @@ double itog(double epsilon,double alpha,double a,double b,double(*f)(double))
     double chi;
     double h = 0.1;
     int sp = 15;//2^(5-1)-1
+    double fx=0.0,fxplush=0.0;
     while(a<b)
     {
         if(a+h>b)h=b-a;
         i1= kvadr_f(a,a+h,f);
         i2 = kvadr_f(a,a+h/2.0,f)+kvadr_f(a+h/2.0,a+h,f);
         delta = (i2-i1)/sp;
+        fx = sum;
         if(fabs(delta)<=epsilon)
         {
             if(delta<0)qarant+=-delta;
             else qarant+=delta;
             sredn+=delta;
             a+=h;
-            if(fabs(sum)<=alpha)
+            sum+=i2;
+            fxplush=sum;
+            if(fabs(fx)<=alpha)
             {
                 return a;
             }
-            sum+=i2;
-            if(sum>alpha)
+            if(fxplush>alpha)
             {
                 break;
             }
@@ -120,7 +124,7 @@ double itog(double epsilon,double alpha,double a,double b,double(*f)(double))
     printf("%lf\n",a);
     printf("%lf\n",a+h);
 
-    return a;
+    return chord_method(a,a+h,f,epsilon,alpha);
 }
 int main()
 {
