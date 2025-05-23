@@ -4,7 +4,7 @@ double func(double x)
 {
 return  x/(1.0+x*x);
 	}
-double funcmin(double(*f)(double), double a, double b)
+double funcmin(double(*f)(double), double a, double b,double epsilon)
 {
     double x1 = (3*a + b) / 4.0;
     double x2 = (a + b) / 2.0;
@@ -15,7 +15,7 @@ double funcmin(double(*f)(double), double a, double b)
 
     double ab = fabs(a - b);
 
-    while (ab>1e-15||ab>1e-15*fabs(a+b)/2)
+    while (ab>epsilon||ab>epsilon*fabs(a+b)/2)
     {
         if (f1 < f2 && f1 < f3)
         {
