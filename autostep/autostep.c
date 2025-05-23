@@ -121,6 +121,6 @@ int main()
     printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %d | sin qarant: %le | sin sredn: %le\n",ssin11,isin11,rsin11,steps,qarant,sredn);
 	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %d | polynom qarant: %le | polynom sredn: %le\n",spolynom11,ipolynom11,rpolynom11,steps,qarant,sredn);*/
 
-	printf("%lf",autostep(1e-16,0,0.513653325120,f));
+	printf("%lf",autostep(1e-16,0,1,f));
 }
 
