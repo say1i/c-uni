@@ -8,18 +8,6 @@ double kvadr_f(double a,double b,double(*f)(double))
 {
 	return ((b-a)/8)*(f(a)+3*f((2*a+b)/3)+3*f((a+b*2)/3)+f(b));
 }
-double f(double(*f)(double),double a,double b,double n)
-{
-	double s = 0;
-	double h = (b-a)/(n-1);
-	double temp_x1 = a;
-	for(int i = 0;i<n-1;i++)
-    {
-        s+=kvadr_f(temp_x1,temp_x1+h,f);
-        temp_x1+=h;
-    }
-    return s;
-}
 double drob(double x)
 {
     return 1/x;
@@ -35,6 +23,10 @@ double polynom(double x)
 double ppolynom(double x)
 {
     return 2*atan(5*x);
+}
+double f(double x)
+{
+    return sqrt(1+pow(x,5))+sqrt(1-pow(x,5));
 }
 double autostep(double epsilon,double a, double b,double(*f)(double))
 {
@@ -75,7 +67,8 @@ double autostep(double epsilon,double a, double b,double(*f)(double))
 
 int main()
 {
-    double a,b;
+    /*double a,b;
+
 	scanf("%lf",&a);
 	scanf("%lf",&b);
 	double ssin7 = autostep(1e-7,a,b,sin);
@@ -126,6 +119,8 @@ int main()
 	printf("e=10^-11\n");
 	printf("my drob: %le | accurate drob: %le | drob error: %le | drob steps: %d | drob qarant: %le | drob sredn: %le\n",sdrob11,idrob11,rdrob11,steps,qarant,sredn);
     printf("my sin: %le | accurate sin: %le | sin error: %le | sin steps: %d | sin qarant: %le | sin sredn: %le\n",ssin11,isin11,rsin11,steps,qarant,sredn);
-	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %d | polynom qarant: %le | polynom sredn: %le\n",spolynom11,ipolynom11,rpolynom11,steps,qarant,sredn);
+	printf("my polynom: %le | accurate polynom: %le | polynom error: %le | polynom steps: %d | polynom qarant: %le | polynom sredn: %le\n",spolynom11,ipolynom11,rpolynom11,steps,qarant,sredn);*/
+
+	printf("%lf",autostep(1e-16,0,0.513653325120,f));
 }
 

@@ -2,8 +2,8 @@
 #include <math.h>
 double func(double x)
 {
-    return (x+1)*(x+1);
-}
+return  x/(1.0+x*x);
+	}
 double funcmin(double(*f)(double), double a, double b)
 {
     double x1 = (3*a + b) / 4.0;
@@ -55,5 +55,5 @@ double funcmin(double(*f)(double), double a, double b)
 }
 int main()
 {
-    printf("%lf",funcmin(func,-1,1));
+    printf("%lf",func(funcmin(func,-1,1)));
 }
