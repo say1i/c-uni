@@ -40,6 +40,41 @@ double chord_method(double a,double b, double (*f)(double),double eps)
     x=c[i];
     return x;
 }
+double autostep(double epsilon,double a, double b,double(*f)(double))
+{
+    steps=0;
+    qarant=0;
+    sredn=0;
+    double sum = 0;
+    double i1;
+    double i2;
+    double delta;
+    double chi;
+    double h = 0.1;
+    int sp = 15;//2^(5-1)-1
+    while(a<b)
+    {
+        if(a+h>b)h=b-a;
+        i1= kvadr_f(a,a+h,f);
+        i2 = kvadr_f(a,a+h/2.0,f)+kvadr_f(a+h/2.0,a+h,f);
+        delta = (i2-i1)/sp;
+        if(fabs(delta)<=epsilon)
+        {
+            if(delta<0)qarant+=-delta;
+            else qarant+=delta;
+            sredn+=delta;
+            sum+=i2;
+            a+=h;
+            steps++;
+        }
+        chi=pow(fabs(delta)/epsilon,1.0/5.0);//недопонял как это связано с новым шагом
+        if(chi>10)chi=10;
+        if(chi<0.1)chi=0.1;
+        h = h * 0.95 / chi;
+    }
+    if(sredn<0)sredn*=-1;
+    return sum;
+}
 
 double itog(double epsilon,double alpha,double a,double b,double(*f)(double))
 {
@@ -82,11 +117,10 @@ double itog(double epsilon,double alpha,double a,double b,double(*f)(double))
         h = h * 0.95 / chi;
     }
 
-    if(sredn<0)sredn*=-1;
-
     printf("%lf\n",a);
     printf("%lf\n",a+h);
-    return chord_method(a,a+h,f,epsilon);
+
+    return a;
 }
 int main()
 {

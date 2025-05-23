@@ -15,7 +15,7 @@ double funcmin(double(*f)(double), double a, double b,double epsilon)
 
     double ab = fabs(a - b);
 
-    while (ab>epsilon||ab>epsilon*fabs(a+b)/2)
+    while (ab>epsilon && ab>epsilon*fabs(a+b)/2.0)
     {
         if (f1 < f2 && f1 < f3)
         {
@@ -45,7 +45,6 @@ double funcmin(double(*f)(double), double a, double b,double epsilon)
             x2 = (a + b) / 2.0;
             x3 = (a + 3*b) / 4.0;
             f1 = f(x1);
-            f2 = f(x2);
             f3 = f(x3);
         }
         ab = fabs(a - b);
@@ -55,5 +54,5 @@ double funcmin(double(*f)(double), double a, double b,double epsilon)
 }
 int main()
 {
-    printf("%lf",func(funcmin(func,-1,1)));
+    printf("%lf",func(funcmin(func,-9,1,1e-16)));
 }
