@@ -1,7 +1,11 @@
 $$
-\int_{-x}^{x} \sqrt{1 + t^5} \, dt = \int_{-x}^{0} \sqrt{1 + t^5} \, dt + \int_{0}^{x} \sqrt{1 + t^5} \, dt = \int_{0}^{x} \sqrt{1 - t^5} \, dt + \int_{0}^{x} \sqrt{1 + t^5} \,= \int_{0}^{x} \left( \sqrt{1 - t^5} + \sqrt{1 + t^5} \right) dt
+\int_{-x}^{x} \sqrt{1 + t^5} \, dt = \int_{-x}^{0} \sqrt{1 + t^5} \, dt + \int_{0}^{x} \sqrt{1 + t^5} \, dt = \int_{0}^{x} \sqrt{1 - t^5} \, dt + \int_{0}^{x} \sqrt{1 + t^5} \,= \int_{0}^{x} \left( \sqrt{1 - t^5} + \sqrt{1 + t^5} \right) dt = alpha
 $$
 
 $$
 \int_{-x}^{0} \sqrt{1 + t^5} \, dt = (t=-u;dr=-du) = \int_{x}^{0} \sqrt{1 - u^5} \, (-du) = \int_{0}^{x} \sqrt{1 - u^5} \, du
 $$
+
+F(x) определен для x из [-1;1]
+Для alpha > 1.97019 и alpha < 0
+решение единственно так как функция монотонна положительна и непрерывна на отрезке [1;1]
