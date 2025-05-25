@@ -1,1 +1,3 @@
-\(\int_{a}^{b} f(x) dx\)
+[
+int_{-x}^{x} \sqrt{1 + t^5} \, dt
+]
