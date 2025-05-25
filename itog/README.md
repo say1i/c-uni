@@ -1,3 +1,1 @@
-[
-int_{-x}^{x} \sqrt{1 + t^5} \, dt
-]
+$\int_a^b f(x) dx$
