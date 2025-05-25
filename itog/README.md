@@ -1,1 +1,1 @@
-$\int_-x^x sqrt{1+t^5} dt$
+$\int_-x^x  $`\sqrt{3x-1}+(1+x)^2`$ dt$
