@@ -38,6 +38,8 @@ int findn(double(*f)(int), double eps,double* strsum,double* revsum)
     int n = 1;
     double psum;
     double osum;
+    double last_psum = 0;
+    double last_osum = 0;
     while (1)
     {
         psum = 0;
@@ -52,17 +54,22 @@ int findn(double(*f)(int), double eps,double* strsum,double* revsum)
         }
         if (fabs(psum - osum) > eps)
             break;
+        last_psum = psum;
+        last_osum = osum;
         n++;
     }
-    *strsum=psum;
-    *revsum=osum;
+    *strsum=last_psum;
+    *revsum=last_osum;
     return n;
 }
 int kfindn(double(*f)(int), double eps,double* strsum,double* revsum)
 {
     int n = 1;
-    double psum;
-    double osum;
+    double psum = 0.0;
+    double osum = 0.0;
+    *strsum = 0.0;
+    *revsum = 0.0;
+
     while (1)
     {
         psum = 0;
@@ -86,16 +93,38 @@ int kfindn(double(*f)(int), double eps,double* strsum,double* revsum)
 int main()
 {
     double eps = 1e-16;
-    double psum,osum;
-    printf("1/sqrt(x) n = %d\ | str sum = %lg | rev sum = %lg\n", findn(onedivsqrtn, eps,&psum,&osum),psum,osum);
-    printf("1/sqrt(x) n = %d\ | str sum = %lg | rev sum = %lg for (-1)^k\n", kfindn(onedivsqrtn, eps,&psum,&osum),psum,osum);
-    printf("log(x)/x n = %d | str sum = %lg | rev sum = %lg\n", findn(lnkdivk, eps,&psum,&osum),psum,osum);
-    printf("log(x)/x n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", kfindn(lnkdivk, eps,&psum,&osum),psum,osum);
-    printf("1/x n = %d | str sum = %lg | rev sum = %lg\n", findn(onedivk, eps,&psum,&osum),psum,osum);
-    printf("1/x n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", kfindn(onedivk, eps,&psum,&osum),psum,osum);
-    printf("1/(x*x) n = %d | str sum = %lg | rev sum = %lg\n", findn(onedivkvpow2, eps,&psum,&osum),psum,osum);
-    printf("1/(x*x) n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", kfindn(onedivkvpow2, eps,&psum,&osum),psum,osum);
-    printf("1/fact(x) n = %d | str sum = %lg | rev sum = %lg\n", findn(onedivkvfact, eps,&psum,&osum),psum,osum);
-    printf("1/fact(x) n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", kfindn(onedivkvfact, eps,&psum,&osum),psum,osum);
-}
+    double psum, osum;
+    int n;
 
+    n = findn(onedivsqrtn, eps, &psum, &osum);
+    printf("1/sqrt(x) n = %d | str sum = %lg | rev sum = %lg\n", n, psum, osum);
+
+    n = kfindn(onedivsqrtn, eps, &psum, &osum);
+    printf("1/sqrt(x) n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", n, psum, osum);
+
+    n = findn(lnkdivk, eps, &psum, &osum);
+    printf("log(x)/x n = %d | str sum = %lg | rev sum = %lg\n", n, psum, osum);
+
+    n = kfindn(lnkdivk, eps, &psum, &osum);
+    printf("log(x)/x n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", n, psum, osum);
+
+    n = findn(onedivk, eps, &psum, &osum);
+    printf("1/x n = %d | str sum = %lg | rev sum = %lg\n", n, psum, osum);
+
+    n = kfindn(onedivk, eps, &psum, &osum);
+    printf("1/x n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", n, psum, osum);
+
+    n = findn(onedivkvpow2, eps, &psum, &osum);
+    printf("1/(x*x) n = %d | str sum = %lg | rev sum = %lg\n", n, psum, osum);
+
+    n = kfindn(onedivkvpow2, eps, &psum, &osum);
+    printf("1/(x*x) n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", n, psum, osum);
+
+    n = findn(onedivkvfact, eps, &psum, &osum);
+    printf("1/fact(x) n = %d | str sum = %lg | rev sum = %lg\n", n, psum, osum);
+
+    n = kfindn(onedivkvfact, eps, &psum, &osum);
+    printf("1/fact(x) n = %d | str sum = %lg | rev sum = %lg for (-1)^k\n", n, psum, osum);
+
+    return 0;
+}
