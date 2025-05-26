@@ -2,53 +2,44 @@
 #include <stdlib.h>
 #include <math.h>
 
-double lagranj(double*xmas,double*fxmas,int n,double x)
-{
-    double*Fxmas=(double*)malloc(sizeof(double)*n);
-    double mult;
-    for(int i = 0;i<n;i++)
-    {
-        mult = 1;
-        for(int j = 0; j < n;j++)
-        {
-            if(i==j)continue;
-            mult *= (x - xmas[j]) / (xmas[i] - xmas[j]);
+double lagrange(double* x, double* fx, int n, double point) {
+    double result = 0;
+    for (int i = 0; i < n; i++) {
+        double term = fx[i];
+        for (int j = 0; j < n; j++) {
+            if (j != i)
+                term *= (point - x[j]) / (x[i] - x[j]);
         }
-        Fxmas[i] = mult;
+        result += term;
     }
-    double sum = 0;
-    for(int i = 0; i < n;i++)
-    {
-        sum+=fxmas[i]*Fxmas[i];
-    }
-    return sum;
+    return result;
 }
-int main()
-{
-    int n = 2;
-    double *xmas = (double *)malloc(sizeof(double) * n);
-    double *fxmas = (double *)malloc(sizeof(double) * n);
 
-    xmas[0] = 0;
-    xmas[1] = 1;
-    for(int i = 1; i < n-1;i++)
-    {
-        xmas[i]=i/100000;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        fxmas[i] = sin(xmas[i]);
-    }
+int main() {
+    const int M = 100000;
+    double max_error;
+    double true_val, interp_val;
 
-    double max_error = 0;
-    for (int j = 0; j <= n; j++) {
-        double interp = lagranj(xmas, fxmas, n, xmas[j]);
-        double error = fabs(interp - fxmas[j]);
-        if (error > max_error)
-            max_error = error;
-    }
+    for (int n = 2; n <= 20; n++) {
+        double* x = (double*)malloc(n * sizeof(double));
+        double* fx = (double*)malloc(n * sizeof(double));
+        for (int i = 0; i < n; i++) {
+            x[i] = (double)i / (n - 1);
+            fx[i] = sin(x[i]);
+        }
+        max_error = 0.0;
+        for (int j = 0; j <= M; j++) {
+            double xi = (double)j / M;
+            true_val = sin(xi);
+            interp_val = lagrange(x, fx, n, xi);
+            double err = fabs(true_val - interp_val);
+            if (err > max_error)
+                max_error = err;
+        }
 
-    printf("ln(x) = %le\nn = %d\nerror = %le\nnorma = %le\n", lagranj(xmas, fxmas, n, 0.5), n, fabs(sin(0.5) - lagranj(xmas, fxmas, n, 0.5)), max_error);
+        printf("n %d | err %le\n", n, max_error);
+    }
 
     return 0;
 }
+
