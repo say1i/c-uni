@@ -1,0 +1,17 @@
+x: 1 exp(x): 2.71828 abs err: 4.44089e-016 rel err: 1.63371e-016 
+x: 10 exp(x): 22026.5 abs err: 7.27596e-012 rel err: 3.30328e-016 
+x: 40 exp(x): 2.35385e+017 abs err: 32 rel err: 1.35947e-016 
+x: 50 exp(x): 5.18471e+021 abs err: 3.14573e+006 rel err: 6.06732e-016 
+x: -1 exp(x): 0.367879 abs err: 5.29633e-017 rel err: 1.43969e-016 
+x: -10 exp(x): 4.53999e-005 abs err: 9.51919e-021 rel err: 2.09674e-016 
+x: -40 exp(x): 4.24835e-018 abs err: 4.386e-034 rel err: 1.0324e-016 
+x: -50 exp(x): 1.92875e-022 abs err: 1.05186e-037 rel err: 5.45359e-016 
+.......................
+x: 1 exp(x): 2.71828 abs err: -4.44089e-016 rel err: 0.065988 
+x: 10 exp(x): 22026.5 abs err: 7.27596e-012 rel err: 0 
+x: 40 exp(x): 2.35385e+017 abs err: 128 rel err: 0 
+x: 50 exp(x): 5.18471e+021 abs err: -4.1943e+006 rel err: 0 
+x: -1 exp(x): 0.367879 abs err: -1.11022e-016 rel err: 0.692201 
+x: -10 exp(x): 4.53999e-005 abs err: 6.3861e-014 rel err: 0.999955 
+x: -40 exp(x): 4.24835e-018 abs err: -0.395557 rel err: 0.673305 
+x: -50 exp(x): 1.92875e-022 abs err: 56676.4 rel err: 1.#INF 
