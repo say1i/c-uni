@@ -5,7 +5,7 @@ double qarant;
 double sredn;
 double f(double x)
 {
-    return sqrt(1+pow(x,5))+sqrt(1-pow(x,5));
+    return 3 * x * sin(x*x*x) + 3 * x;
 }
 double ftest(double x)
 {

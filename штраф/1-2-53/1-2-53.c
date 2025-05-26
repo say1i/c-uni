@@ -5,40 +5,41 @@ int main()
     FILE *fin = fopen("input.txt", "r");
     int n;
     fscanf(fin, "%d", &n);
-    double sec[n];
-    for (int i = 0; i < n; i++) {
-        fscanf(fin, "%lf", &sec[i]);
-    }
+    double prev, curr, next;
 
-    int local_min_first_index = 1;
-    int local_min_last_index = 1;
-    int local_max_first_index = 1;
-    int local_max_last_index = 1;
-    for (int i = 1; i < n - 1; i++) {
-        if (sec[i - 1] < sec[i] && sec[i] > sec[i + 1])//local max
+    fscanf(fin,"%lf", &prev);
+    fscanf(fin,"%lf", &curr);
+    int firstpos = -1;
+    int lastpos = -1;
+    int cond = 0;
+    for(int i = 1; i < n-1;i++)
+    {
+        fscanf(fin,"%lf", &next);
+        if(cond==0)
         {
-            if(i>=local_max_last_index)local_max_last_index = i;
+            if (curr < prev && curr < next)
+            {
+                firstpos = i;
+                cond = 1;
+            }
         }
-        if (sec[i - 1] > sec[i] && sec[i] < sec[i + 1])//local min
+        if (curr < prev && curr < next)
         {
-            if(i>=local_min_last_index)local_min_last_index = i;
+            lastpos = i;
         }
+        prev = curr;
+        curr = next;
     }
-    for (int i = 1; i < n - 1; i++) {
-        if (sec[i - 1] < sec[i] && sec[i] > sec[i + 1])//local max
-        {
-            local_max_first_index = i;
-            break;
-        }
+    if(lastpos==-1||firstpos==-1)
+    {
+        printf("no local\n");
+        return 0;
     }
-    for (int i = 1; i < n - 1; i++) {
-        if (sec[i - 1] < sec[i] && sec[i] > sec[i + 1])//local max
-        {
-            local_min_first_index = i;
-            break;
-        }
+    if(lastpos==firstpos)
+    {
+        printf("one local\n");
+        return 0;
     }
-    printf("local max biggest distance %d\n",local_max_last_index-local_max_first_index);
-    printf("local min biggest distance %d\n",local_min_last_index-local_min_first_index);
+    printf("local min biggest distance %d\n",lastpos-firstpos);
     return 0;
 }
