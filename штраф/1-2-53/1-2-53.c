@@ -3,8 +3,7 @@
 int main()
 {
     FILE *fin = fopen("input.txt", "r");
-    int n;
-    fscanf(fin, "%d", &n);
+
     double prev, curr, next;
 
     fscanf(fin,"%lf", &prev);
@@ -12,9 +11,10 @@ int main()
     int firstpos = -1;
     int lastpos = -1;
     int cond = 0;
-    for(int i = 1; i < n-1;i++)
+    int i = 1;
+    while(1)
     {
-        fscanf(fin,"%lf", &next);
+        if(fscanf(fin,"%lf", &next)!=1)break;
         if(cond==0)
         {
             if (curr < prev && curr < next)
@@ -29,6 +29,7 @@ int main()
         }
         prev = curr;
         curr = next;
+        i++;
     }
     if(lastpos==-1||firstpos==-1)
     {
