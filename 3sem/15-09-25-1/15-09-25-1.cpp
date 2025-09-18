@@ -7,17 +7,42 @@ int main()
     ifstream fin("text1.txt");
     ofstream fout("text2.txt");
     char ch;
-    int spaceCount=0;
-    int slashNCount = 0;
+    int elCount=0;
     if(fin.is_open()&&fout.is_open())
     {
         while(fin.get(ch))
         {
-            if(ch==' ')spaceCount++;
-            if(ch=='\n')slashNCount++;
+            if(ch==' ')
+            {
+                fout << ch;
+                while(ch==' ')
+                {
+                    fin.get(ch);
+                    if(fin.eof())
+                    {
+                        return 0;
+                    }
+                }
+                elCount++;
+            }
+
+            if(ch=='\n')
+            {
+                fout << ch;
+                while(ch=='\n')
+                {
+                    fin.get(ch);
+                    if(fin.eof())
+                    {
+                        return 0;
+                    }
+                }
+                elCount++;
+            }
+
             fout << ch;
         }
-        if(spaceCount!= 2||slashNCount!=2)
+        if(elCount!=4)
         {
             cout << "wrong format" <<endl;
             return -1;
