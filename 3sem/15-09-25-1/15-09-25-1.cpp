@@ -2,7 +2,7 @@
 #include <fstream>
 using namespace std;
 
-bool isValidFIO(const string& fio) {
+bool isValidFIO(const string fio) {
     for (int i = 0; i < fio.length();i++)
     {
         if (!isalpha(fio[i])) {
@@ -11,7 +11,7 @@ bool isValidFIO(const string& fio) {
     }
     return true;
 }
-bool isValidInt(const string& num) {
+bool isValidInt(const string num) {
     int state = 0;
     for (int i = 0; i < num.length();i++)
     {
@@ -22,7 +22,7 @@ bool isValidInt(const string& num) {
     }
     return true;
 }
-bool isValidDouble(const string& num) {
+bool isValidDouble(const string num) {
     int state = 0;
     for (int i = 0; i < num.length();i++)
     {
