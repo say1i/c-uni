@@ -54,12 +54,11 @@ int main()
     string ball;
 
     fin >> name >> surname >> fathername >> date >> ball;
-    string test;
-    if(fin>>test)
-    {
-        cout<<"wrong format"<<endl;
+    if (name.empty() || surname.empty() || fathername.empty() || date.empty() || ball.empty()) {
+        cout << "wrong format" << endl;
         return -1;
     }
+
     string fio = surname+name+fathername;
 
     if (!isValidFIO(fio) || !isValidInt(date) || !isValidDouble(ball)) {
@@ -69,5 +68,19 @@ int main()
 
     fout << name << " " << surname << " " << fathername << " " << date << " " << ball << endl;
 
+    fin >> ws;
+    string test;
+    if(fin.eof())
+        cout<<"good"<<endl;
+    else if(fin>>test)
+    {
+        cout<<"wrong format"<<endl;
+        return -1;
+    }
+    else
+    {
+        cout<<"bad"<<endl;
+        return -1;
+    }
     return 0;
 }
