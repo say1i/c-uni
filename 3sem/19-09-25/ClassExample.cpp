@@ -4,15 +4,24 @@ using namespace std;
 
 class example
 {
-    int value = 0;
+    int value1 = 0;
+    int value2 = 0;
 public:
-    void setValue(int value1)
+    void setValue1(int valueA)
     {
-        value = value1;
+        value1 = valueA;
     }
-    int getValue()
+    int getValue1()
     {
-        return value;
+        return value1;
+    }
+    void setValue2(int valueA)
+    {
+        value2 = valueA;
+    }
+    int getValue2()
+    {
+        return value2;
     }
     void func(int a)
     {
@@ -30,8 +39,10 @@ public:
 int main()
 {
     example ex;
-    ex.setValue(20);
-    cout << ex.getValue() << endl;
+    ex.setValue1(10);
+    ex.setValue2(20);
+    cout << ex.getValue1() << endl;
+    cout << ex.getValue2() << endl;
     ex.func(10);
     ex.func("stakan");
     ex.func(10,20);
