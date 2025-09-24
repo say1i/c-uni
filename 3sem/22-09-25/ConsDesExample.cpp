@@ -14,7 +14,7 @@ class kover
 public:
     stol stoleshnica;
     int* a;
-    kover(stol& stolik,int n)
+    kover(stol stolik,int n)
     {
         a = (int*)malloc(n*sizeof(int));
         if(!a)
