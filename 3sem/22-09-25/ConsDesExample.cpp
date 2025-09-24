@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <stdlib.h>
 using namespace std;
 class stol
 {
@@ -13,9 +13,14 @@ class kover
 {
 public:
     stol stoleshnica;
-
-    kover(stol& stolik)
+    int* a;
+    kover(stol& stolik,int n)
     {
+        a = (int*)malloc(n*sizeof(int));
+        if(!a)
+        {
+            cout<<"error"<<endl;
+        }
         stoleshnica = stolik;
         cout << "kover added" << endl;
     }
@@ -24,5 +29,9 @@ public:
 int main()
 {
     stol stul;
-    kover kovrik(stul);
+    for(int i = 0; i < 1000000;i++)
+    {
+        kover kovrik(stul,20000);
+    }
+
 }
