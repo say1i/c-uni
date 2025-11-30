@@ -19,65 +19,55 @@
             <body>
             <div id="tree-history">
             <div align="center">
-В дерево добавлен элемент 1
+В дерево добавлен элемент 10
 </div>
 <div class="mermaid" align="center" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid black">
 graph TD
-0["1"]
+0["10"]
 classDef hidden display: none;
 
 </div>
 <div align="center">
-В дерево добавлен элемент 2
+В дерево добавлен элемент 5
 </div>
 <div class="mermaid" align="center" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid black">
 graph TD
-0["1"]
-2["2"]
-0---2
-0~~~H1:::hidden
+0["10"]
+1["5"]
+0~~~H2:::hidden
+0---1
 classDef hidden display: none;
 
 </div>
 <div align="center">
-В дерево добавлен элемент 0
+В дерево добавлен элемент 20
 </div>
 <div class="mermaid" align="center" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid black">
 graph TD
-0["1"]
-1["0"]
-2["2"]
+0["10"]
+1["5"]
+2["20"]
 0---1
 0---2
 classDef hidden display: none;
 
 </div>
 <div align="center">
-В дерево добавлен элемент -1
+В дерево добавлен элемент 90
 </div>
 <div class="mermaid" align="center" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid black">
 graph TD
-0["1"]
-1["0"]
-2["2"]
-3["-1"]
+0["10"]
+1["5"]
+2["20"]
+6["90"]
 0---1
 0---2
-1---3
-1~~~H4:::hidden
+2~~~H5:::hidden
+2---6
 classDef hidden display: none;
 
 </div>
-<div align="center">
-Из дерева удален элемент 1
 </div>
-<div class="mermaid" align="center" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid black">
-graph TD
-0["0"]
-1["-1"]
-2["2"]
-0---1
-0---2
-classDef hidden display: none;
-
-</div>
+        </body>
+        </html>
