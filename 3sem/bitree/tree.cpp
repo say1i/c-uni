@@ -198,16 +198,14 @@ string generateMermaidGraph(tree &t)
         int right_idx = i * 2 + 2;
         if(p->left != nullptr&&p->right == nullptr)
         {
-            s +=to_string(i) + "~~~H" + to_string(right_idx) + ":::hidden\n";
             s += to_string(i)+ "---" +to_string(p->left->index )+ "\n";
-
+            s +=to_string(i) + "~~~H" + to_string(right_idx) + ":::hidden\n";
             cout<<"first"<<endl;
         }
         else if(p->left == nullptr&&p->right != nullptr)
         {
             s +=to_string(i) + "~~~H" + to_string(left_idx) + ":::hidden\n";
             s+= to_string(i) + "---" + to_string(p->right->index )+ "\n";
-
             cout<<"second"<<endl;
         }
         else if(p->left != nullptr&&p->right != nullptr)
