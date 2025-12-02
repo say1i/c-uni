@@ -387,7 +387,13 @@ string generateMermaidGraph(tree &t)
 
     //генерируем и определяем узлы
     vector<node*> tmp = q;
-
+    int i=0;
+   /* for(node*p:tmp)
+    {
+        if(p!=nullptr)s+= to_string(p->index)+"[\""+to_string(p->data)+"\"]\n";
+        else s += "H" + to_string(i) + "[\" \"]:::hidden\n";
+        i++;
+    }*/
     i=0;
     for(node*p:tmp)
     {
