@@ -387,13 +387,7 @@ string generateMermaidGraph(tree &t)
 
     //генерируем и определяем узлы
     vector<node*> tmp = q;
-    int i=0;
-    for(node*p:tmp)
-    {
-        if(p!=nullptr)s+= to_string(p->index)+"[\""+to_string(p->data)+"\"]\n";
-        else s += "H" + to_string(i) + "[\" \"]:::hidden\n";
-        i++;
-    }
+
     i=0;
     for(node*p:tmp)
     {
@@ -402,32 +396,28 @@ string generateMermaidGraph(tree &t)
         {
             if(p->left != nullptr&&p->right == nullptr)
             {
-                s += to_string(p->index)+ "---" +to_string(p->left->index )+ "\n";
-                s +=to_string(i) + "~~~H" + to_string(i*2+2) + ":::hidden\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]"+ "---" + to_string(p->left->index)+"[\""+to_string(p->left->data)+"\"]"+"\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]" + "~~~" + to_string(i*2+2) + ":::hidden\n";
             }
             else if(p->left == nullptr&&p->right != nullptr)
             {
-                s +=to_string(i) + "~~~H" + to_string(i*2+1) + ":::hidden\n";
-                s+= to_string(p->index) + "---" + to_string(p->right->index )+ "\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]" + "~~~" + to_string(i*2+1) + ":::hidden\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]"+ "---" + to_string(p->right->index)+"[\""+to_string(p->right->data)+"\"]"+"\n";
                 cout<<"second"<<endl;
             }
             else if(p->left != nullptr&&p->right != nullptr)
             {
-                s += to_string(p->index)+ "---" +to_string(p->left->index )+ "\n";
-                 s+= to_string(p->index) + "---" + to_string(p->right->index )+ "\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]"+ "---" + to_string(p->left->index)+"[\""+to_string(p->left->data)+"\"]"+"\n";
+                 s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]"+ "---" + to_string(p->right->index)+"[\""+to_string(p->right->data)+"\"]"+"\n";
                  cout<<"third"<<endl;
             }
             else
             {
-                 s +=to_string(i) + "~~~H" + to_string(i*2+1) + ":::hidden\n";
-                 s +=to_string(i) + "~~~H" + to_string(i*2+2) + ":::hidden\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]" + "~~~" + to_string(i*2+1) + ":::hidden\n";
+                s +=to_string(p->index)+"[\""+to_string(p->data)+"\"]" + "~~~" + to_string(i*2+2) + ":::hidden\n";
             }
         }
-        else
-        {
-            s +=to_string(i) + "~~~H" + to_string(i*2+1) + ":::hidden\n";
-            s +=to_string(i) + "~~~H" + to_string(i*2+2) + ":::hidden\n";
-        }
+
         i++;
     }
     s += "classDef hidden display: none;\n";
